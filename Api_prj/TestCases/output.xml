@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.2 (Python 3.9.1 on win32)" generated="20201224 09:30:18.983" rpa="false">
+<suite id="s1" name="Get Req" source="C:\Users\Sam_Kayyali\PycharmProjects\Api_prj\TestCases\get_req.robot">
+<test id="s1-t1" name="Run Case1">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>session1</arg>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20201224 09:30:19.241" level="INFO">Creating Session using : alias=session1, url=https://jsonplaceholder.typicode.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20201224 09:30:19.240" endtime="20201224 09:30:19.242"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>session1</arg>
+<arg>${val}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20201224 09:30:19.445" level="INFO">GET Request : url=https://jsonplaceholder.typicode.com/todos/1/ 
+ path_url=/todos/1/ 
+ headers={'User-Agent': 'python-requests/2.25.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20201224 09:30:19.445" level="INFO">GET Response : url=https://jsonplaceholder.typicode.com/todos/1/ 
+ status=200, reason=OK 
+ body={
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
+} 
+ </msg>
+<msg timestamp="20201224 09:30:19.445" level="INFO">c:\users\sam_kayyali\pycharmprojects\api_prj\venv\lib\site-packages\urllib3\connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'jsonplaceholder.typicode.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20201224 09:30:19.447" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20201224 09:30:19.242" endtime="20201224 09:30:19.447"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+</arguments>
+<assign>
+<var>${resp.status_code}</var>
+</assign>
+<msg timestamp="20201224 09:30:19.448" level="INFO">${resp.status_code} = 200</msg>
+<status status="PASS" starttime="20201224 09:30:19.447" endtime="20201224 09:30:19.448"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<status status="PASS" starttime="20201224 09:30:19.449" endtime="20201224 09:30:19.450"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<assign>
+<var>${body}</var>
+</assign>
+<msg timestamp="20201224 09:30:19.453" level="INFO">${body} = {
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
+}</msg>
+<status status="PASS" starttime="20201224 09:30:19.452" endtime="20201224 09:30:19.453"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+<arg>0</arg>
+</arguments>
+<msg timestamp="20201224 09:30:19.456" level="FAIL">TypeError: a bytes-like object is required, not 'str'</msg>
+<status status="FAIL" starttime="20201224 09:30:19.455" endtime="20201224 09:30:19.456"></status>
+</kw>
+<status status="FAIL" starttime="20201224 09:30:19.240" endtime="20201224 09:30:19.458" critical="yes">TypeError: a bytes-like object is required, not 'str'</status>
+</test>
+<status status="FAIL" starttime="20201224 09:30:18.986" endtime="20201224 09:30:19.461"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" id="s1" name="Get Req">Get Req</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
