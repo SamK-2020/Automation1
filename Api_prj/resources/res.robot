@@ -7,5 +7,5 @@ Library  SeleniumLibrary
 
 *** Keywords ***
 create api function
-    get request
+    get request +1
     api_fun
